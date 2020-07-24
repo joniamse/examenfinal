@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<nav class="navbar">
+  <div class="btn-group">
+    <%= link_to 'Airplanes', airplanes_path, class: "back-but"%> |
+    <%= link_to 'Flights', flights_path, class: "back-but"%> |
+    <%= link_to 'Companies', companies_path, class: "back-but"%> |
+     
+  </div>
+</nav>
+<html>
+  <head>
+    <title>Airport</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Airplanes</h1>
+
+<form action="/airplanes" method="GET">
+
+  <%= @company_id %>
+          <select name="company_id">
+            <option disabled selected value> Select a company </option> 
+            <% Company.all.each_with_index do | t, index | %>
+              <option value="<%= t.id %>" <% t.id.to_s == @company_id ? "selected" : "" %>> <%= t.name%> </option>
+            <% end -%>
+          </select>
+
+        <input type="submit", value="SUBMIT" />
+
+</form>
+<form action="/airplanes" method="GET">
+
+  <%= @airplane_id %>
+          <select name="airplane_id">
+            <option disabled selected value> Select a airplane </option> 
+            <% Airplane.all.each_with_index do | t, index | %>
+              <option value="<%= t.id %>" <% t.id.to_s == @airplane_id ? "selected" : "" %>> <%= t.registration%> </option>
+            <% end -%>
+          </select>
+
+        <input type="submit", value="SUBMIT" />
+
+</form>
+<form action="/airplanes" method="GET">
+  Model: <input type="text" name="model" placeholder="Model" value="<%= @model %>"/>
+  <input type="submit", value="Submit" />
+
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Company Country</th>
+      <th>Model</th>
+      <th>Registration</th>
+      <th>Seatings</th>
+      <th>Flights Count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @airplanes.each do |airplane| %>
+      <tr>
+        <td><%= airplane.company.name %></td>
+        <td><%= airplane.company.country %></td>
+        <td><%= airplane.model %></td>
+        <td><%= airplane.registration %></td>
+        <td><%= airplane.seatings %></td>
+        <td><%= airplane.flights_count(airplane) %></td>
+        <td><%= link_to 'Show', airplane %></td>
+        <td><%= link_to 'Edit', edit_airplane_path(airplane) %></td>
+        <td><%= link_to 'Destroy', airplane, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Airplane', new_airplane_path %>
